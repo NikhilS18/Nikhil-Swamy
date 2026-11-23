@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Clone</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f0f0f;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    padding: 15px 12px;
+    background: #0f0f0f;
+}
+
+.menu {
+    font-size: 25px;
+    margin: 5px 10px 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 20px 42px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.youtube-icon {
+    background: #ff0000;
+    width: 29px;
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+}
+
+.sidebar-line {
+    border-bottom: 1px solid #303030;
+    margin: 10px 0;
+}
+
+.item {
+    height: 43px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.item.active {
+    background: #272727;
+}
+
+.icon {
+    width: 22px;
+    text-align: center;
+    font-size: 19px;
+}
+
+.heading {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 14px;
+}
+
+/* MAIN */
+.main {
+    margin-left: 250px;
+}
+
+/* HEADER */
+.header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    gap: 12px;
+}
+
+.search {
+    width: 500px;
+    height: 42px;
+    display: flex;
+    margin-left: 150px;
+}
+
+.search input {
+    width: 450px;
+    background: #121212;
+    border: 1px solid #303030;
+    border-radius: 22px 0 0 22px;
+    color: white;
+    padding: 0 18px;
+    font-size: 15px;
+}
+
+.search-button {
+    width: 60px;
+    background: #222;
+    border: 1px solid #303030;
+    border-left: none;
+    border-radius: 0 22px 22px 0;
+    color: white;
+    font-size: 22px;
+}
+
+.mic {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: #272727;
+    color: white;
+    font-size: 18px;
+}
+
+.create {
+    margin-left: auto;
+    background: #272727;
+    border: none;
+    color: white;
+    padding: 10px 17px;
+    border-radius: 20px;
+}
+
+.notification {
+    font-size: 22px;
+    margin: 0 10px;
+}
+
+.profile {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CATEGORIES */
+.categories {
+    display: flex;
+    gap: 10px;
+    padding: 8px 50px 20px;
+    overflow: hidden;
+}
+
+.category {
+    background: #272727;
+    color: white;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.category:first-child {
+    background: white;
+    color: black;
+}
+
+/* VIDEOS */
+.videos {
+    padding: 0 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 18px;
+}
+
+.video {
+    width: 100%;
+}
+
+.thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 9px;
+    overflow: hidden;
+    background: #252525;
+    position: relative;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.time {
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+    background: #000;
+    padding: 4px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.details {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.channel {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.text {
+    flex: 1;
+}
+
+.title {
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: bold;
+}
+
+.info {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+.dots {
+    font-size: 20px;
+    color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="menu">☰</div>
+
+    <div class="logo">
+        <div class="youtube-icon">▶️</div>
+        YouTube
+        <small>IN</small>
+    </div>
+
+    <div class="item active">
+        <span class="icon">⌂</span>
+        Home
+    </div>
+
+    <div class="item">
+        <span class="icon">◉</span>
+        Shorts
+    </div>
+
+    <div class="item">
+        <span class="icon">▣</span>
+        Subscriptions
+    </div>
+
+    <div class="sidebar-line"></div>
+
+    <div class="heading">You ›</div>
+
+    <div class="item">
+        <span class="icon">◷</span>
+        History
+    </div>
+
+    <div class="item">
+        <span class="icon">☷</span>
+        Playlists
+    </div>
+
+    <div class="item">
+        <span class="icon">◷</span>
+        Watch later
+    </div>
+
+    <div class="item">
+        <span class="icon">♡</span>
+        Liked videos
+    </div>
+
+    <div class="item">
+        <span class="icon">▻</span>
+        Your videos
+    </div>
+
+    <div class="item">
+        <span class="icon">⇩</span>
+        Downloads
+    </div>
+
+    <div class="item">
+        <span class="icon">♢</span>
+        Courses
+    </div>
+
+    <div class="sidebar-line"></div>
+
+    <div class="heading">Explore</div>
+
+    <div class="item">
+        <span class="icon">▢</span>
+        Shopping
+    </div>
+
+    <div class="item">
+        <span class="icon">♫</span>
+        Music
+    </div>
+
+    <div class="item">
+        <span class="icon">▣</span>
+        Movies & TV
+    </div>
+
+    <div class="item">
+        <span class="icon">⌄</span>
+        Show more
+    </div>
+
+    <div class="sidebar-line"></div>
+
+    <div class="heading">More from YouTube</div>
+
+    <div class="item">
+        <span class="icon">▶️</span>
+        YouTube Premium
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="search">
+            <input type="text" placeholder="Search">
+            <button class="search-button">⌕</button>
+        </div>
+
+        <button class="mic">🎙</button>
+
+        <button class="create">＋ Create</button>
+
+        <div class="notification">♧</div>
+
+        <div class="profile">B</div>
+
+    </div>
+
+
+    <!-- CATEGORIES -->
+    <div class="categories">
+
+        <button class="category">All</button>
+        <button class="category">Music</button>
+        <button class="category">Ranbir Kapoor</button>
+        <button class="category">Mixes</button>
+        <button class="category">T-Series</button>
+        <button class="category">Trailers</button>
+        <button class="category">Anirudh Ravichander</button>
+        <button class="category">Web Development</button>
+        <button class="category">Indian pop music</button>
+        <button class="category">Albums</button>
+        <button class="category">Array</button>
+        <button class="category">Live</button>
+
+    </div>
+
+
+    <!-- VIDEOS -->
+    <div class="videos">
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <img src="https://i.ytimg.com/vi/Po3XJ0qQ7W0/hq720.jpg">
+                <span class="time">139 lessons</span>
+            </div>
+
+            <div class="details">
+                <div class="channel">CW</div>
+
+                <div class="text">
+                    <div class="title">
+                        Sigma Web Development Course -
+                        Web Development Tutorials in Hindi
+                    </div>
+
+                    <div class="info">
+                        CodeWithHarry • Course<br>
+                        View full course
+                    </div>
+                </div>
+
+                <div class="dots">⋮</div>
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <img src="https://i.ytimg.com/vi/8MZJf9uG5sE/hq720.jpg">
+                <span class="time">3:31</span>
+            </div>
+
+            <div class="details">
+                <div class="channel">T</div>
+
+                <div class="text">
+                    <div class="title">
+                        #418 Official Trailer -
+                        The Last Warning (Hindi)
+                    </div>
+
+                    <div class="info">
+                        T-Series • 872K views • 8h ago
+                    </div>
+                </div>
+
+                <div class="dots">⋮</div>
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <img src="https://i.ytimg.com/vi/0Z4G5iM4d1U/hq720.jpg">
+                <span class="time">1:48:38</span>
+            </div>
+
+            <div class="details">
+                <div class="channel">FA</div>
+
+                <div class="text">
+                    <div class="title">
+                        I Built a Modern Quiz App Using
+                        JavaScript and You Can Too
+                    </div>
+
+                    <div class="info">
+                        FrontEnd Academy • 186 views • 2d ago
+                    </div>
+                </div>
+
+                <div class="dots">⋮</div>
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <img src="https://i.ytimg.com/vi/2Vv-BfVoq4g/hq720.jpg">
+                <span class="time">0:54</span>
+            </div>
+
+            <div class="details">
+                <div class="channel">GM</div>
+
+                <div class="text">
+                    <div class="title">
+                        GEJJE - Music Video Teaser
+                    </div>
+
+                    <div class="info">
+                        Hombale Music • 582K views • 2d ago
+                    </div>
+                </div>
+
+                <div class="dots">⋮</div>
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hq720.jpg">
+                <span class="time">11:00</span>
+            </div>
+
+            <div class="details">
+                <div class="channel">U</div>
+
+                <div class="text">
+                    <div class="title">
+                        Is Odisha India's Next Tech Hub?
+                    </div>
+
+                    <div class="info">
+                        Uplearn by Upstox • 463K views • 1mo ago
+                    </div>
+                </div>
+
+                <div class="dots">⋮</div>
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <img src="https://i.ytimg.com/vi/6ZfuNTqbHE8/hq720.jpg">
+                <span class="time">2:11</span>
+            </div>
+
+            <div class="details">
+                <div class="channel">IM</div>
+
+                <div class="text">
+                    <div class="title">
+                        Avengers: Doomsday |
+                        Special Look - Hindi
+                    </div>
+
+                    <div class="info">
+                        IndiaMarvel • 16M views • 1mo ago
+                    </div>
+                </div>
+
+                <div class="dots">⋮</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

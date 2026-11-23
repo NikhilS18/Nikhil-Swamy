@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        a{
+            text-decoration: none;
+            font-size: 30px;
+        }
+        a:link{
+            color:rgb(15, 203, 147);
+        }
+        a:visited{
+            color:rgb(2, 41, 37);
+        }
+        a:active{
+            color:blue;
+        }
+        .card-container{
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        .card{
+            border: 1px solid black;
+            width: 250px;
+            padding: 10px;
+            box-shadow: 5px 5px 10px gray;
+        }
+        .card:target{
+            background-color: rgb(161, 27, 139);
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#html">html</a>
+        <a href="#css">css</a>
+        <a href="#js">js</a>
+    </nav>
+    <div class="card-container">
+        <div class="card" id="html">
+            <h1>html</h1>
+            <p>HTML is the standard markup language for creating Web pages. HTML stands for Hyper Text Markup Language. HTML describes the structure of a Web page. HTML consists of a series of elements. HTML elements tell the browser how to display the content.</p>
+        </div>
+        <div class="card" id="css">
+            <h1>css</h1>
+            <p>CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed. This tutorial will teach you CSS from basic to advanced.</p>
+        </div>
+        <div class="card" id="js">
+            <h1>js</h1>
+            <p>JavaScript is a programming language that allows you to create dynamic content on web pages. JavaScript is the most popular programming language for web development.</p>
+        </div>
+    </div>
+</body>
+</html>

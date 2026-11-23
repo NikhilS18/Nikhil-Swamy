@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f4f8; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6eef4; 
+            border: 1px solid #b3c6d6;
+            border-radius: 8px;
+            padding: 20px 40px;
+            width: 350px;
+        }
+
+        h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4a5568;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e53e3e; 
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #f7fafc;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-bottom: 1px solid #cbd5e0;
+            background-color: transparent;
+            color: #4a5568;
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper::after {
+            content: '\2304'; 
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #a0aec0;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .image-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-top: 5px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Registration Page</h2>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+    </div>
+
+    <div class="form-group">
+        <label for="interest-rate">Intrest Rate</label>
+        <input type="range" id="interest-rate" name="interest-rate" min="0" max="100" value="30">
+    </div>
+
+    <div class="form-group select-wrapper">
+        <label for="country">Select Country</label>
+        <select id="country" name="country">
+            <option value="IND">IND</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Subscribed</label>
+        <div class="radio-group">
+            <input type="radio" id="yes" name="subscribed" value="YES" checked>
+            <label for="yes" style="font-weight: normal;">YES</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <div class="image-preview">
+            <!-- The src attribute below now uses a sample working image URL -->
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Profile Image">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
